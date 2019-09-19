@@ -1,17 +1,13 @@
-package com.demo.entity;
+package cn.itcast.domain;
 
-import lombok.Cleanup;
 import lombok.Data;
 
 import javax.persistence.*;
 
 /**
  * @author : 赵静超
- * @date : 2019/9/18 11:05
- * @description : 客户实体类
- * 配置映射关系
- *      实体类和表的映射关系
- *      实体类属性和表字段的映射关系
+ * @date : 2019/9/19 8:39
+ * @description : 配置实体类与表的映射关系，属性和数据库字段的映射关系
  */
 @Data   //读写()、hashCode()、equals()、toString()
 @Entity

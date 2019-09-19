@@ -11,6 +11,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>day02</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>../day03</module>
+    </modules>
     <properties>
         <spring.version>4.2.4.RELEASE</spring.version>
         <hibernate.version>5.0.7.Final</hibernate.version>

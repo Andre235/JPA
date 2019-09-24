@@ -37,10 +37,54 @@ public class OneToManyTest {
         //创建一个客户，创建一个联系人
         Customer customer = new Customer();
         LinkMan linkMan = new LinkMan();
-        customer.setCustName("阿里集团");
-        linkMan.setLkmName("阿里集团对接人");
+        customer.setCustName("京东");
+        linkMan.setLkmName("京东集团对接人");
         customer.getLinkManSet().add(linkMan);  //配置主表和从表的外键联系
         customerDao.save(customer);
         linkManDao.save(linkMan);
+    }
+
+    /**
+     * 一的一方放弃外键维护权,减小性能开销
+     */
+    @Test
+    @Transactional  //添加事务注解，保持事务一致性
+    @Rollback(false)   //设置事务不自动回滚
+    public void testSave1(){
+        Customer customer = new Customer();
+        LinkMan linkMan = new LinkMan();
+        customer.setCustName("天猫");
+        linkMan.setLkmName("天猫联系人");
+        customer.getLinkManSet().add(linkMan);  //配置主表和从表的外键联系
+        customerDao.save(customer);
+        linkManDao.save(linkMan);
+    }
+
+    /**
+     * 异常
+     * 级联保存：保存一个客户的同时保存联系人
+     * 需要在主表实体类对象添加@CasCade注解
+     */
+    @Test
+    @Transactional
+    @Rollback(false)
+    public void testCasCade(){
+        Customer customer = new Customer();
+        LinkMan linkMan = new LinkMan();
+        customer.setCustName("天猫");
+        linkMan.setLkmName("天猫联系人");
+        customer.getLinkManSet().add(linkMan);  //配置主表和从表的外键联系
+        customerDao.save(customer);
+    }
+
+    /**
+     * 级联删除
+     */
+    @Test
+    @Transactional
+    @Rollback(false)
+    public void testCasCadeRemove(){
+        Customer one = customerDao.findOne(1L);
+        customerDao.delete(one);
     }
 }

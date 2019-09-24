@@ -42,8 +42,9 @@ public class Customer {
 
     //配置客户和联系人之间的关系(一对多映射关系)
     //使用注解的形式配置映射关系
-    @OneToMany(targetEntity = LinkMan.class)
-    @JoinColumn(name="lkm_cust_id",referencedColumnName = "cust_id")
+    //@OneToMany(targetEntity = LinkMan.class)
+    //@JoinColumn(name="lkm_cust_id",referencedColumnName = "cust_id")
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)  //在主表上添加级联操作
     Set<LinkMan> linkManSet= new HashSet<LinkMan>();
 
 }
